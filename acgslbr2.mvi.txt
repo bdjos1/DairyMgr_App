@@ -1,0 +1,14 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   my.config.js
+#	new file:   src/main/resources/static/js/components/core/dataservice.js
+#	deleted:    src/main/resources/static/js/components/expenses/expenses-dataservice.js
+#	modified:   src/test/resources/static/js/spec.js
+#	new file:   src/test/resources/static/js/specHelper.js
+#
+

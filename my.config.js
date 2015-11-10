@@ -19,12 +19,13 @@ module.exports = function(config) {
       //{pattern: 'src/main/resources/static/js/**/*.js', included: false},
       //{pattern: 'src/test/resources/static/js/*.js', included: false},
       //{pattern: 'src/test/resources/static/js/**/*.js', included: false}
-	   'target/generated-resources/static/js/angular.js',
-	   'target/generated-resources/static/js/angular-mocks.js',
+	  'target/generated-resources/static/js/angular.js',
+	  'target/generated-resources/static/js/angular-mocks.js',
 	  'src/main/resources/static/js/components/expenses/expenses.module.js',
 	  'src/main/resources/static/js/components/expenses/expenses.js',
-	  'src/main/resources/static/js/components/expenses/expenses-dataservice.js',
+	  'src/main/resources/static/js/components/core/dataservice.js',
 	  'src/test/resources/static/js/spec.js',
+	  'src/test/resources/static/js/specHelper.js',
 	  'src/test/resources/static/js/specController.js'
     ],
 
