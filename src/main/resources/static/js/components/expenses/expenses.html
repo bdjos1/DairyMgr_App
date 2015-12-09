@@ -1,0 +1,35 @@
+<!-- div class="container"-->
+   <div>
+    <a ui-sref="new_expense" class="btn btn-info" role="button">Link Button</a>
+   </div>
+   <!--  a href="#" class="btn btn-primary">Add Receipt</a-->           
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Merchant Name</th>
+        <th>Date Of Purchase</th>
+        <th>Paid By Credit</th>
+        <th>Payment Due Date</th>
+         <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="expense in ctrl.restData.expenses">
+        <td>{{expense.merchantName}}</td>
+        <td>{{expense.dateOfPurchase | date:'MM/dd/yyyy'}}</td>
+        <td>{{expense.paidByCredit}}</td>
+        <td>{{expense.paymentDueDate | date:'MM/dd/yyyy'}}</td>
+        <td>
+           <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    Actions <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu">
+      <li><a ui-sref="new_expense({url :expense._links.self.href})">Edit</a></li>
+      <li><a ng-click="ctrl.deleteExpense(expense._links.self.href)">Delete</a></li>
+    </ul>
+  </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<!-- /div-->

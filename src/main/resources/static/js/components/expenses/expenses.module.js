@@ -2,5 +2,5 @@
 	'use strict';
 
 
-    angular.module('shared.expenses', []);
+    angular.module('app.expenses', []);
 })();

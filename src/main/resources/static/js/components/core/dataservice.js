@@ -1,12 +1,13 @@
 (function() {
 	
 	'use strict';
-	angular.module('shared.expenses').factory('dataservice', dataService);
+	angular.module('app.expenses').factory('dataservice', dataService);
 	
 	
 	
-	function dataService($http, $q) {
+	function dataService($http, $q, $resource) {
 		var errorMsg = "";
+		var parse = "";
 	
 	   var dataservice = {
          addApplicationData: addApplicationData,
@@ -16,9 +17,16 @@
 	   }
 	   return dataservice;
 	   
-	   function getApplicationData(url, objectType) {
+	   function getApplicationData(url, objectType, parseData) {
+		   var callback = getAllApplicationDataComplete;
+		   if (!parseData) {
+			   callback = getApplicationDataComlete;
+		   }
+		   checkFxnTwoParamsSet(url, objectType);
+		   //TODO: http Vs NgResource Vs Restangular - Restangular 
+		   // The latter may need to be used for more complex scenarios
 			return $http.get(url)
-            .then(getApplicationDataComplete)
+            .then(callback)
             .catch(function(message) {
             	//alert("issue");
                 //exception.catcher('XHR Failed for getApplicationData')(message);
@@ -26,12 +34,18 @@
             	return 'Failed to get ' + objectType + '.';
             });
 
-            function getApplicationDataComplete(data, status, headers, config) {
-              return data;
+            function getAllApplicationDataComplete(data, status, headers, config) {
+             
+            	  return data.data._embedded;
+            }
+            
+            function getApplicationDataComlete(data, status, headers, config) {             
+          	  return data.data;
             }
 	   }
 	  	   
 	   function addApplicationData(url, object, objectType) {
+		   checkFxnAllParamsSet(url, objectType, object);
 		   // TODO: Proper error handling here..
 		   var deferred = $q.defer();
 		   var service = this;
@@ -45,6 +59,7 @@
 	   }
 	   
 	   function modifyApplicationData(url, object, objectType) {
+		   checkFxnAllParamsSet(url, objectType, object);
 		   return $http.put(url, object)
            .then(function(response) {
         	 return response.data;
@@ -56,8 +71,9 @@
            }); 
 	   }
 	   
-	   function deleteApplicationData(url, object, objectType) {
-		   return $http.delete(url, object)
+	   function deleteApplicationData(url) {
+		   //checkFxnAllParamsSet(url, objectType, object);
+		   return $http.delete(url)
            .then(function(response) {
         	 return response.data;
            }).catch(function(message) {
@@ -66,6 +82,24 @@
                //$location.url('/');
            	return 'Failed to delete ' + objectType + ' ' + JSON.stringify(object) + '. Perhaps this item no longer exists.';
            }); 
+	   }
+	   
+	   function checkFxnAllParamsSet(url, objectType, object) {
+		 checkFxnTwoParamsSet(url, objectType, object);
+	     
+	     if (object == undefined) {
+	    	 throw new Error("'object' paramater must be set.");
+	     }
+	   }
+	   
+	   function checkFxnTwoParamsSet(url, objectType) {
+	     if (url == undefined) {
+	    	 throw new Error("'url' paramater must be set.");
+		 }
+		     
+		 if (objectType == undefined) {
+		   throw new Error("'objectType' paramater must be set.");
+		 }
 	   }
 	}
 	
