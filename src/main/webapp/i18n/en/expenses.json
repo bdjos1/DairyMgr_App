@@ -1,0 +1,15 @@
+{  
+    "buttons" : {
+       "edit": "Edit",
+       "delete": "Delete",
+	   "add": "Add Receipt"
+    },
+      "labels" : {
+      "merchantName" : "Merchant Name",
+      "dateOfPur" : "Date Of Purchase",
+      "paidByCred" : "Paid By Credit",
+      "paymentDueDate" : "Payment Due Date",
+      "actions" : "Actions"
+    }
+  
+}

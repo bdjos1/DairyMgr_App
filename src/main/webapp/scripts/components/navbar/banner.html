@@ -1,0 +1,23 @@
+ <div>
+ <nav id="navbar" class="navbar navbar-default" role="navigation">
+   <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+      <li ui-sref-active="active"><a ui-sref="home" translate="global.menu.home">Home</a></li>
+        <li ui-sref-active="active"><a ui-sref="expenses" translate="global.menu.accounts">Accounts</a></li>
+        <li ui-sref-active="active" id="login" class="link-visible"><a ui-sref="login" translate="global.menu.login">login</a></li>
+		<li id="logout" class="link-hidden"><a ng-click="ctrl.logout()" translate="global.menu.logout">logout</a></li>
+        <li ui-sref-active="active" class="dropdown pointer ng-scope">
+           <a class="dropdown-toggle" data-toggle="dropdown" href="">
+             <span>
+               <span class="glyphicon glyphicon-flag"></span>
+               <span class="hidden-sm ng-scope" translate="global.menu.language">Language</span>
+               <b class="caret"></b>
+             </span>
+           </a>
+          <ul class="dropdown-menu" ng-translate-language-select></ul>
+       </li>
+      </ul>
+    </div>
+</nav>
+<!-- div ui-view></div-->
+</div>

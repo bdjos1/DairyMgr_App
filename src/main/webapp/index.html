@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <title>Farm Manager App</title>
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css assets/styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <script src="bower_components/modernizr/modernizr.js"></script>
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-aria/angular-aria.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+        <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <!--  script src="bower_components/bower-angular-translate-handler-log-master/angular-translate-handler-log.js"></script-->
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-translate/angular-translate.js"></script>
+        <script src="bower_components/messageformat/messageformat.js"></script>
+        <script src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js"></script>
+        <script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+        <script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+        
+       <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/json3/lib/json3.js"></script>
+        <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+        <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+
+
+    <!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
+    <script src="scripts/app/app.module.js"></script>
+	<script src="scripts/app/app.js"></script>
+	<script src="scripts/app/main/main.module.js"></script>
+	<script src="scripts/app/main/main-config.js"></script>
+	<script src="scripts/app/main/main.js"></script>
+	
+	<script src="scripts/components/expenses/expenses.module.js"></script>
+    <script src="scripts/components/expenses/expenses.js"></script>
+    <script src="scripts/components/expenses/expenses-config.js"></script>
+     <script src="scripts/app/login/login-config.js"></script>
+    <script src="scripts/app/login/login.module.js"></script>
+    <script src="scripts/app/login/login.js"></script>
+    <script src="scripts/components/navbar/banner.js"></script>
+    <script src="scripts/components/navbar/banner-dir.js"></script>
+	<script src="scripts/components/util/dataservice.js"></script>
+	<script src="scripts/components/util/authenticationService.js"></script>
+	<script src="scripts/components/util/translate.js"></script>
+    <script src="scripts/components/util/translateService.js"></script>
+    <script src="scripts/components/util/translateServiceDirective.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="assets/styles/custom.css">
+    </head>
+    <body ng-app="app">
+    
+    <!--app-banner/-->
+    
+
+   <!-- MAIN CONTENT -->
+   <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+   <!--div class="container"-->
+      <!--div ui-view></div-->
+   <!-- /div-->
+   <div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>
+   <div ui-view="navbar" ng-cloak=""></div>
+    <div class="container">
+      <div ui-view="content"></div>
+    </div>
+	
+    
+    <!-- endbuild -->
+</body>
+</html>

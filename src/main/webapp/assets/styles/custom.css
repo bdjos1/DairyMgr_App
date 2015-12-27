@@ -1,0 +1,11 @@
+/*!
+ * Your CSS files will be generated in this directory by "grunt sass" or "gulp sass"
+ */
+.link-hidden {
+ display:none !important;	
+}
+
+.link-visible {
+  display: visible;
+}
+ 

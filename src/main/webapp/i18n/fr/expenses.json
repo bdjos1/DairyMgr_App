@@ -1,0 +1,14 @@
+{
+    "buttons" : {
+      "edit": "Editer",
+      "delete": "Effacer",
+	  "add": "Ajouter réception"
+    },
+     "labels" : {
+      "merchantName" : "Nom du commerçant",
+      "dateOfPur" : "Date d'achat",
+      "paidByCred" : "Versés par Crédit",
+      "paymentDueDate" : "Date limite de paiement",
+      "actions" : "Actes"
+    }
+}
