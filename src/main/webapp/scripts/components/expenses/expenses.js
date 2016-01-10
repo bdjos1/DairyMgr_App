@@ -14,7 +14,7 @@
        var url = "/expenses";
        //vm.child = $controller('appDataController',{});
        //vm.expense = expense;
-       vm.expenseAdded = false;
+       //vm.expenseAdded = false;
        vm.authenticated = authenticate.authenticated;
 
        activate();
@@ -108,8 +108,8 @@
     		   // TODO: How to verify parameters correctly passed into service!
     	       return dataservice.modifyApplicationData(targetUrl, expense, vm.title).then(function(data) {
     	    	  //alert("ADDED");
-    	    	   vm.expenseAdded = true;
-    	    	   return vm.expenseAdded;
+    	    	   vm.expenseModified = true;
+    	    	   return vm.expenseModified;
     	       });   
     	   }
 		   
@@ -117,7 +117,8 @@
        
        function deleteExpense(url) {
 	       return dataservice.deleteApplicationData(url).then(function(data) {
-	    	  //alert("DELETED");	    	   
+	    	   vm.expenseDeleted = true;
+	    	   return vm.expenseDeleted;	    	   
 	       });   
        }	   
    }

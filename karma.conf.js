@@ -14,6 +14,7 @@ module.exports = function (config) {
             // bower:js
             'main/webapp/bower_components/jquery/dist/jquery.js',
             'main/webapp/bower_components/angular/angular.js',
+				 'main/webapp/bower_components/angular-ui-router/release/angular-ui-router.js',
             'main/webapp/bower_components/angular-aria/angular-aria.js',
             'main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'main/webapp/bower_components/angular-cache-buster/angular-cache-buster.js',
@@ -28,32 +29,38 @@ module.exports = function (config) {
             'main/webapp/bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.js',
             'main/webapp/bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js',
             'main/webapp/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js',
-            'main/webapp/bower_components/angular-ui-router/release/angular-ui-router.js',
+           
             'main/webapp/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js',
             'main/webapp/bower_components/json3/lib/json3.js',
             'main/webapp/bower_components/ng-file-upload/ng-file-upload.js',
             'main/webapp/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js',
             'main/webapp/bower_components/angular-mocks/angular-mocks.js',
             // endbower
-			'main/webapp/scripts/app/main/main-module.js',
-			'main/webapp/scripts/components/expenses/expenses-module.js',
-			//'main/webapp/scripts/app/main/main.js',
-			//'main/webapp/scripts/app/main/main-config.js',		
-			'main/webapp/scripts/app/**/*.js',
-            'main/webapp/scripts/components/**/*.+(js|html)',
 			'main/webapp/scripts/app/app-module.js',
 			'main/webapp/scripts/app/app.js',
+			'main/webapp/scripts/app/main/main-module.js',
+			'main/webapp/scripts/**/!(*config).js',
+			//'main/webapp/scripts/components/expenses/expenses-module.js',
+			//'main/webapp/scripts/components/expenses/!(expenses-config).js',
+			//'main/webapp/scripts/components/expenses/expenses.js',
+			//'main/webapp/scripts/app/main/main.js',
+			//'main/webapp/scripts/app/main/main-config.js',		
+			//'main/webapp/scripts/app/**/*.js',
+            //'main/webapp/scripts/components/**/*.+(js|html)',
+			'test/javascript/spec/helpers/specHelper.js',
+			'test/javascript/spec/expensesSpec.js',
             'test/javascript/spec/helpers/module.js',
             'test/javascript/spec/helpers/httpBackend.js',
-            'test/javascript/**/!(karma.conf).js'
+			'test/javascript/**/!(karma.conf).js'
         ],
 
 
         // list of files / patterns to exclude
         exclude: [],
+		
 
         preprocessors: {
-            './**/*.js': ['coverage']
+           'main/webapp/scripts/**/!(*config).js': ['coverage']
         },
 
         reporters: ['dots', 'jenkins', 'coverage', 'progress'],
