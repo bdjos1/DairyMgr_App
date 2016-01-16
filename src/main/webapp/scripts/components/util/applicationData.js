@@ -1,7 +1,7 @@
 (function() {
  'use strict';
  
- angular.module('expenses').controller('appDataController', appDataController); 
+ angular.module('app.expenses').controller('appDataController', appDataController); 
  
    function appDataController(dataservice) {
 	  
