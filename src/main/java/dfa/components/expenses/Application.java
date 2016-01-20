@@ -92,6 +92,15 @@ public class Application {
 					.csrfTokenRepository(csrfTokenRepository()).and()
 					.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
 		}
+		
+	    @Override
+		public void configure(WebSecurity web) throws Exception {
+		    web.ignoring()
+		        .antMatchers("/scripts/**/*.{js,html}")
+		        .antMatchers("/bower_components/**")
+		        .antMatchers("/i18n/**")
+		        .antMatchers("/assets/**");
+		 }
 
 		private Filter csrfHeaderFilter() {
 			return new OncePerRequestFilter() {
