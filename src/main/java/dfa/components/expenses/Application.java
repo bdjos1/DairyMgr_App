@@ -22,6 +22,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.rest.webmvc.BaseUriAwareController;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
@@ -82,25 +84,30 @@ public class Application {
 	}
 	
 	@Configuration
+	@EnableWebSecurity
 	@Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 	protected static class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
+			//.antMatchers("/home.html	http.httpBasic().and().authorizeRequests().antMatchers("/index.html").authenticationEntryPoint(new org.springframework.boot.autoconfigure.security.Http401AuthenticationEntryPoint("headerValue"));
+			 //http.anonymous().disable()
+		     //   .exceptionHandling()
+		      //  .authenticationEntryPoint(new org.springframework.boot.autoconfigure.security.Http("headerValue"));
 			http.httpBasic().and().authorizeRequests()
-					.antMatchers("/index.html", "/home.html", "/login.html", "/").permitAll().anyRequest()
+					.antMatchers("/index.html","/home.html", "/login.html", "/").permitAll().anyRequest()
 					.authenticated().and().csrf()
 					.csrfTokenRepository(csrfTokenRepository()).and()
 					.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
 		}
 		
-	    @Override
-		public void configure(WebSecurity web) throws Exception {
-		    web.ignoring()
-		        .antMatchers("/scripts/**/*.{js,html}")
-		        .antMatchers("/bower_components/**")
-		        .antMatchers("/i18n/**")
-		        .antMatchers("/assets/**");
-		 }
+		 @Override
+		    public void configure(WebSecurity web) throws Exception {
+		        web.ignoring()
+		            .antMatchers("/scripts/**/*.{js,html}")
+		            .antMatchers("/bower_components/**")
+		            .antMatchers("/i18n/**")
+		            .antMatchers("/assets/**");
+		    }
 
 		private Filter csrfHeaderFilter() {
 			return new OncePerRequestFilter() {
@@ -108,6 +115,10 @@ public class Application {
 				protected void doFilterInternal(HttpServletRequest request,
 						HttpServletResponse response, FilterChain filterChain)
 						throws ServletException, IOException {
+					
+					if (request.getRequestURI().endsWith("index.html")) {
+						System.out.println("FUCK yea");
+					}
 					CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class
 							.getName());
 					if (csrf != null) {
