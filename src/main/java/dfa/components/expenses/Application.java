@@ -1,6 +1,9 @@
 package dfa.components.expenses;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.security.Principal;
 import java.util.Date;
 
@@ -80,6 +83,16 @@ public class Application {
 				log.info(user.toString());
 			}
             log.info("");
+            String pid = ManagementFactory.getRuntimeMXBean().getName();
+            if (pid.indexOf("@") != -1) 
+            {
+              pid = pid.substring(0, pid.indexOf("@"));
+            }                                               
+            BufferedWriter writer = new BufferedWriter(new FileWriter("app.id"));
+            writer.write(pid);
+            writer.newLine();
+            writer.flush();
+            writer.close();  
 		};
 	}
 	
@@ -140,6 +153,26 @@ public class Application {
 			HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
 			repository.setHeaderName("X-XSRF-TOKEN");
 			return repository;
+		}
+		
+		public static void writePID(String fileLocation) throws IOException
+		{
+		    // Use the engine management bean in java to find out the pid
+		    // and to write to a file
+		    if (fileLocation.length() == 0)
+		    {
+		       // fileLocation = DEFAULT_PID_FILE;
+		    }       
+		    String pid = ManagementFactory.getRuntimeMXBean().getName();
+		    if (pid.indexOf("@") != -1) 
+		    {
+		        pid = pid.substring(0, pid.indexOf("@"));
+		    }                                               
+		    BufferedWriter writer = new BufferedWriter(new FileWriter(fileLocation));
+		    writer.write(pid);
+		    writer.newLine();
+		    writer.flush();
+		    writer.close();                     
 		}
 	}
 	
