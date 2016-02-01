@@ -1,0 +1,90 @@
+<project name="MyProject" default="run" basedir=".">
+  <property name="selenium.server.home" value="C:/Exclude/selenium-server-standalone"/>
+  
+  <target name="jar"
+        description="generate the distribution">
+   <java classname="dfa.components.expenses.Application">
+         <arg value="-h"/>
+         <classpath>
+           <pathelement location="target/dairymanager-0.0.1-SNAPSHOT.war"/>
+         </classpath>
+       </java>
+  </target>
+  
+  <target name="run">
+  <exec executable="cmd" timeout="1000">
+    <arg value="/c"/>
+    <arg value="build.bat"/>
+	<arg value="run"/>
+  </exec>
+  </target>
+  
+  
+  <target name="selenium-start" description="Starts a local Selenium instance.">
+    
+	<echo>updating log: selenium-stop-result.txt</echo>
+	
+    <pathconvert property="selenium.log.file" targetos="windows">
+      <path location="selenium-server.log"/>
+    </pathconvert>
+    
+    <java jar="${selenium.server.home}\selenium-server-standalone-2.42.2.jar" spawn="true" fork="true">
+      <!-- Ensure that Intern Selenium client issues don't hang the whole build forever. -->
+      <arg value="-timeout" /> <arg value="30" />
+      
+      <!-- Ensure browser issues don't hang the whole build forever. -->
+      <arg value="-browserTimeout" /> <arg value="60" />
+      
+      <arg value="-log" /> <arg value="${selenium.log.file}" />
+      
+      <arg value="-Dwebdriver.chrome.driver=${selenium.server.home}\Drivers\chromedriver.exe" />
+      <arg value="-Dwebdriver.ie.driver=${selenium.server.home}\Drivers\IEDriverServer.exe" />
+    </java>
+
+    <!-- Give Selenium time to become ready, before the next step in the build. -->
+    <echo>Waiting for selenium to become ready...</echo>
+    <sleep seconds="3"/>
+
+  </target>
+
+  <target name="selenium-stop" description="Shuts down the local Selenium instance.">
+  
+    <echo>updating log: selenium-stop-result.txt</echo>
+
+    <get taskname="selenium-shutdown" dest="selenium-stop-result.txt" ignoreerrors="true"
+       src="http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer"/>
+
+    <exec executable="taskkill">
+      <arg line="/im IEDriverServer.exe /f /t"/>
+    </exec>
+
+    <exec executable="taskkill">
+      <arg line="/im chromedriver.exe /f /t"/>
+    </exec>
+  </target>
+  
+  <target name="stopApp">
+     <!--exec executable="taskkill">
+      <arg line="/f /im ${java.home}/bin/java.exe"/>
+    </exec-->
+	<loadresource property="pid">
+       <file file="app.id"/>
+    </loadresource>
+	<echo>Java pid is: ${pid}</echo>
+	<exec executable="cmd" timeout="1000">
+    <arg value="/c"/>
+    <arg value="build.bat"/>
+	<arg value="stopApp"/>
+	<arg value="${pid}"/>
+  </exec>
+  </target>
+  
+   <target name="webdriver.start">
+  <exec executable="cmd" timeout="5000">
+    <arg value="/c"/>
+    <arg value="build.bat"/>
+	<arg value="webdriver"/>
+  </exec>
+  </target>
+
+</project>
