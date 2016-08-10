@@ -13,18 +13,23 @@ Jasmine is used for unit testing and Protractor is used for end to end testing (
 
 Features of the Application
 ---------------------------
-Authentication (Login/Logout) & Authoriztion.
-Globalization. Locale Selector to chooose English or French. Default is the former.
-Display a list of expense receipts to the user and allows them to add/edit/delete a receipt.
+ - Authentication (Login/Logout) & Authoriztion.
+ - Globalization. Locale Selector to chooose English or French. Default is the former.
+ - Display a list of expense receipts to the user and allows them to add/edit/delete a receipt.
 
 Dependencies
 --------------
-Bower (please see here for further details : https://bower.io/)
-Java 8 (please see here for installation details: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-Maven (please see here for installation details: https://maven.apache.org/install.html)
-
+ - Bower (please see here for further details : https://bower.io/)
+ - Java 8 (please see here for installation details: http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+ - Maven (please see here for installation details: https://maven.apache.org/install.html)
 
 Instrcutions for Running Application
 -------------------------------------
+
+Future Direction
+-----------------
+- Add new features such as ability to income receipts and a dashboard with anlytical information.
+- Create a related project that has a Node.js (and MongoDB) backend and a frontend written in AngularJS 2.0 (Beta), and achieves same functionality
+
 
 
