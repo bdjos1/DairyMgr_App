@@ -13,7 +13,7 @@ Jasmine is used for unit testing and Protractor is used for end to end testing (
 
 Features of the Application
 ---------------------------
- - Authentication (Login/Logout) & Authoriztion.
+ - Authentication (Login/Logout) & Authorization.
  - Globalization. Locale Selector to chooose English or French. Default is the former.
  - Display a list of expense receipts to the user and allows them to add/edit/delete a receipt.
 
